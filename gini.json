@@ -1,0 +1,7 @@
+{
+    "id": "chem-db",
+    "name": "chem-db",
+    "description": "app about chem-reagent data",
+    "version": "0.1.0",
+    "dependencies": []
+}
