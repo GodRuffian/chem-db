@@ -1,0 +1,6 @@
+---
+default:
+  dsn: mysql:dbname=chem_db;host=mysql.docker.local
+  username: username
+  password: password
+...
