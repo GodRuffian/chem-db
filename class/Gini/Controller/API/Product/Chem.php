@@ -2,13 +2,13 @@
 
 /**
  * @brief API
- * @author kai.leng
- * @date 2015-12-1
+ * @author Jinlin Li
+ * @date 2016-1-13
  */
 namespace Gini\Controller\API\Product;
 
 /**
- * @brief 继承自Gini\Controller\API\Base
+ * @brief 继承自Gini\Controller\API
  */
 class Chem extends \Gini\Controller\API
 {
