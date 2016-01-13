@@ -56,5 +56,20 @@ class Chem extends \Gini\Controller\API
 		}
 		return $data;
     }
+
+    public function actionGetProduct($cas_no)
+    {
+    	if (!$cas_no) return false;
+    	$products = Those('product')->whose('cas_no')->is($cas_no);
+    	$data = [];
+    	foreach ($products as $product) {
+    		$data[$product->id] = [
+    			'cas_no' => $product->cas_no,
+    			'name' => $product->name,
+    			'type' => $product->type,
+    		];
+    	}
+    	return $data;
+    }
 }
 ?>
