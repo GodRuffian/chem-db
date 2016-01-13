@@ -61,6 +61,7 @@ class Chem extends \Gini\Controller\API
     {
     	if (!$cas_no) return false;
     	$products = Those('product')->whose('cas_no')->is($cas_no);
+		if (!count($products)) return false;
     	$data = [];
     	foreach ($products as $product) {
     		$data[$product->id] = [
