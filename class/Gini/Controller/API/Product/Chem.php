@@ -20,16 +20,16 @@ class Chem extends \Gini\Controller\API
 		$sql = "SELECT * FROM product ";
 		if ( (isset($criteria['type']) && in_array($criteria['type'], $types)) || isset($criteria['keyword'])) {
 			$sql .= ' WHERE ';
-		}
-		if (isset($criteria['type']) && in_array($criteria['type'], $types)) {
-			$sql .= "type=:type ";
-			$params['type'] = $type;
-		}
-		if (isset($criteria['keyword'])) {
-			$keyword = '%'.$criteria['keyword'].'%';
-			$sql .= 'cas_no LIKE :cas_no OR name LIKE :name ';
-			$params[':cas_no'] = $criteria['keyword'];
-			$params[':name'] = $criteria['keyword'];
+            if (isset($criteria['type']) && in_array($criteria['type'], $types)) {
+                $sql .= "type=:type ";
+                $params['type'] = $type;
+            }
+            if (isset($criteria['keyword'])) {
+                $keyword = '%'.$criteria['keyword'].'%';
+                $sql .= 'cas_no LIKE :cas_no OR name LIKE :name ';
+                $params[':cas_no'] = $keyword;
+                $params[':name'] = $keyword;
+            }
 		}
 		$products = $db->query($sql, null, $params)->rows();
 		$count = count($products);
