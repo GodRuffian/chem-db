@@ -60,7 +60,6 @@ class Chem extends \Gini\Controller\API
 				'cas_no' => $product->cas_no,
 				'name' => $product->name,
 				'type' => $product->type,
-
 			];
 		}
 		return $data;
@@ -74,9 +73,10 @@ class Chem extends \Gini\Controller\API
     	$data = [];
     	foreach ($products as $product) {
     		$data[$product->id] = [
-    			'cas_no' => $product->cas_no,
-    			'name' => $product->name,
-    			'type' => $product->type,
+				'cas_no' => $product->cas_no,
+				'name' => $product->name,
+				'type' => $product->type,
+				'state' => $product->state,
     		];
     	}
     	return $data;
