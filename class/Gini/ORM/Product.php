@@ -11,4 +11,10 @@ class Product extends Object
     protected static $db_index = [
         'cas_no',
     ];
+
+	public static $state_units = [
+	    'solid' => ['g', 'ug', 'μg', 'mg', 'kg'],
+	    'liquid' => ['ml', 'ul', 'μl', 'cl', 'dl', 'l' ],
+	];
+
 }

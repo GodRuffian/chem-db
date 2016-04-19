@@ -60,6 +60,7 @@ class Chem extends \Gini\Controller\API
 				'cas_no' => $product->cas_no,
 				'name' => $product->name,
 				'type' => $product->type,
+				'state' => $product->state
 			];
 		}
 		return $data;
@@ -70,13 +71,15 @@ class Chem extends \Gini\Controller\API
     	if (!$cas_no) return false;
     	$products = Those('product')->whose('cas_no')->is($cas_no);
 		if (!count($products)) return false;
+		$units = \Gini\ORM\Product::$state_units;
     	$data = [];
     	foreach ($products as $product) {
-    		$data[$product->id] = [
+    		$data[$product->type] = [
 				'cas_no' => $product->cas_no,
 				'name' => $product->name,
 				'type' => $product->type,
 				'state' => $product->state,
+				'units' => $units[$product->state]
     		];
     	}
     	return $data;
