@@ -64,12 +64,22 @@ class ChemDB extends \Gini\Controller\API
         ];
     }
 
-    private function _getData($chemical) {
+    private function _getData($c) {
         return [
-            'cas_no' => $chemical->cas_no,
-            'name' => $chemical->name,
-            'types' => $chemical->types(),
-            'state' => $chemical->state,
+            'cas_no' => $c->cas_no,
+            'name' => $c->name,
+            'types' => $c->types(),
+            'state' => $c->state,
+            'en_name' => $c->en_name,
+            'aliases' => $c->aliases,
+            'en_aliases' => $c->en_aliases,
+            'einecs' => $c->einecs,
+            'mol_formula' => $c->mol_formula,
+            'mol_weight' => $c->mol_weight,
+            'inchi' => $c->inchi,
+            'melting_point' => $c->melting_point,
+            'boiling_point' => $c->boiling_point,
+            'flash_point' => $c->flash_point,
         ];
     }
 
