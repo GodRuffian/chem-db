@@ -91,10 +91,7 @@ class Chem extends \Gini\Controller\API
         $products = those('product')->whose('cas_no')->isIn($cas_nos);
         $result = [];
         foreach ($products as $product) {
-            $result[$product->cas_no] = $result[$product->cas_no] ?: [];
-            if (!in_array($product->type, $result[$product->cas_no])) {
-                $result[$product->cas_no] = $product->type;
-            }
+            $result[$product->cas_no][] = $product->type;
         }
         return $result;
     }
