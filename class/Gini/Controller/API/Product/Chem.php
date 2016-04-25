@@ -22,7 +22,7 @@ class Chem extends \Gini\Controller\API
 			$sql .= ' WHERE ';
             if (isset($criteria['type']) && in_array($criteria['type'], $types)) {
                 $sql .= "type=:type ";
-                $params['type'] = $type;
+                $params['type'] = $criteria['type'];
             }
             if (isset($criteria['keyword'])) {
                 $keyword = '%'.$criteria['keyword'].'%';
