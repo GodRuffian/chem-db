@@ -16,7 +16,7 @@ class Chem extends \Gini\Controller\API
     {
 		$db = \Gini\Database::db();
 		$params = [];
-		$types = ['highly_toxic', 'drug_precursor', 'hazardous'];
+		$types = ['highly_toxic', 'drug_precursor', 'hazardous', 'explosive'];
 		$sql = "SELECT * FROM product ";
 		if ( (isset($criteria['type']) && in_array($criteria['type'], $types)) || isset($criteria['keyword'])) {
 			$sql .= ' WHERE ';
@@ -30,7 +30,11 @@ class Chem extends \Gini\Controller\API
                 $params[':cas_no'] = $keyword;
                 $params[':name'] = $keyword;
             }
-		}
+        }
+
+        // 按cas号分组
+        $sql = "{$sql} GROUP BY cas_no";
+
 		$products = $db->query($sql, null, $params)->rows();
 		$count = count($products);
 		$token = md5(J($criteria));
@@ -56,10 +60,11 @@ class Chem extends \Gini\Controller\API
 		$products = $db->query($sql, null, $params)->rows();
 		$data = [];
 		foreach ($products as $product) {
+            $grouped = those('product')->whose('cas_no')->is($product->cas_no)->get('id', 'cas_no');
 			$data[$product->id] = [
 				'cas_no' => $product->cas_no,
 				'name' => $product->name,
-				'type' => $product->type,
+				'type' => implode(',', $grouped),
 				'state' => $product->state
 			];
 		}
@@ -94,5 +99,5 @@ class Chem extends \Gini\Controller\API
         }
         return $result;
     }
+
 }
-?>
