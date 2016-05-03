@@ -20,19 +20,23 @@ class Chem extends \Gini\Controller\API
 		$sql = "SELECT * FROM product ";
 		if ( (isset($criteria['type']) && in_array($criteria['type'], $types)) || isset($criteria['keyword'])) {
 			$sql .= ' WHERE ';
+			$where = [];
             if (isset($criteria['type']) && in_array($criteria['type'], $types)) {
-                $sql .= "type=:type ";
+                $where[] = "type=:type ";
                 $params['type'] = $criteria['type'];
             }
             if (isset($criteria['keyword'])) {
                 $keyword = '%'.$criteria['keyword'].'%';
-                $sql .= 'cas_no LIKE :cas_no OR name LIKE :name ';
+                $where[] = 'cas_no LIKE :cas_no OR name LIKE :name ';
                 $params[':cas_no'] = $keyword;
                 $params[':name'] = $keyword;
             }
-        }
-
-        // 按cas号分组
+        
+            if (count($where)) {
+            	$sql .= implode(' AND ', $where);
+            }
+		} 
+		// 按cas号分组
         $sql = "{$sql} GROUP BY cas_no";
 
 		$products = $db->query($sql, null, $params)->rows();
