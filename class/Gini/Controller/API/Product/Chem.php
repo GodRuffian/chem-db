@@ -78,6 +78,7 @@ class Chem extends \Gini\Controller\API
 				'name' => $product->name,
 				'type' => $product->type,
 				'state' => $product->state,
+				'type_title' => \Gini\ORM\Product::$type_titles[$product->type],
     		];
     	}
     	return $data;

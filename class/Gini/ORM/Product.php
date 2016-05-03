@@ -13,4 +13,12 @@ class Product extends Object
         'cas_no',
     ];
 
+
+	public static $type_titles = [
+	    'drug_precursor' => '易制毒',
+	    'hazardous' => '危险品',
+	    'highly_toxic' => '剧毒品',
+	    'explosive' => '易制爆'
+	];
+
 }
