@@ -64,7 +64,7 @@ class Chem extends \Gini\Controller\API
 		$products = $db->query($sql, null, $params)->rows();
 		$data = [];
 		foreach ($products as $product) {
-            $grouped = those('product')->whose('cas_no')->is($product->cas_no)->get('id', 'type');
+            $grouped = array_unique(array_values((array)those('product')->whose('cas_no')->is($product->cas_no)->get('id', 'type')));
 			$data[$product->id] = [
 				'cas_no' => $product->cas_no,
 				'name' => $product->name,
