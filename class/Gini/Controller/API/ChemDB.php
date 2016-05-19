@@ -111,7 +111,7 @@ class ChemDB extends \Gini\Controller\API
     public function actionGetChemicalTypes($cas_nos)
     {
         if (!is_array($cas_nos)) $cas_nos = [$cas_nos];
-        return those('chemical/type')->whose('cas_no')->isIn($cas_nos)->get('cas_no', 'name');
+        return those('chemical/type')->whose('cas_no')->isIn($cas_nos)->get('id', 'name');
     }
 }
 ?>
