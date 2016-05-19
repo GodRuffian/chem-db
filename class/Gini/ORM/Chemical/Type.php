@@ -9,6 +9,7 @@ class Type extends \Gini\ORM\Object
     public $name = 'string:20';     // 类型名称: highly_toxic, drug_precursor, hazardous
 
     protected static $db_index = [
+        'unique:cas_no,name',
         'cas_no',
         'name',
     ];
