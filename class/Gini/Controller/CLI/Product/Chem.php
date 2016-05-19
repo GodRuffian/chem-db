@@ -65,22 +65,28 @@ class Chem extends \Gini\Controller\CLI
 
     public function actionCacheProducts()
     {
-        $those = those('chemical/type')->orderBy('cas_no', 'asc');
-        $start = 0;
-        $perpage = 100;
+        $chemicals = those('chemical')->orderBy('cas_no', 'asc');
         $cacher = \Gini\Cache::of('chemical');
         $timeout = 86400 * 30;
-        while (true) {
-            $types = $those->limit($start, $perpage);
-            if (!count($types)) {
-                break;
-            }
-            $start += $perpage;
-            foreach ($types as $type) {
-                $key = "chemical[{$type->cas_no}]";
-                $name = $type->name;
-                $cacher->set($key, $name, $timeout);
-            }
+        foreach ($chemicals as $c) {
+            $key = "chemical[{$c->cas_no}]";
+            $data = [
+                'cas_no' => $c->cas_no,
+                'name' => $c->name,
+                'types' => $c->types(),
+                'state' => $c->state,
+                'en_name' => $c->en_name,
+                'aliases' => $c->aliases,
+                'en_aliases' => $c->en_aliases,
+                'einecs' => $c->einecs,
+                'mol_formula' => $c->mol_formula,
+                'mol_weight' => $c->mol_weight,
+                'inchi' => $c->inchi,
+                'melting_point' => $c->melting_point,
+                'boiling_point' => $c->boiling_point,
+                'flash_point' => $c->flash_point,
+            ];
+            $cacher->set($key, $data, $timeout);
         }
     }
 }
