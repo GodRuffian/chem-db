@@ -61,5 +61,26 @@ class Chem extends \Gini\Controller\CLI
             }
             echo $type."初始化完毕\n";
         }
-	}
+    }
+
+    public function actionCacheProducts()
+    {
+        $those = those('chemical/type')->orderBy('cas_no', 'asc');
+        $start = 0;
+        $perpage = 100;
+        $cacher = \Gini\Cache::of('chemical');
+        $timeout = 86400 * 30;
+        while (true) {
+            $types = $those->limit($start, $perpage);
+            if (!count($types)) {
+                break;
+            }
+            $start += $perpage;
+            foreach ($types as $type) {
+                $key = "chemical[{$type->cas_no}]";
+                $name = $type->name;
+                $cacher->set($key, $name, $timeout);
+            }
+        }
+    }
 }
