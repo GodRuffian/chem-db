@@ -39,6 +39,6 @@ class Chemical extends \Gini\ORM\Object
     ];
 
     public function types() {
-        return array_values(those('chemical/type')->whose('cas_no')->is($this->cas_no)->get('cas_no', 'name'));
+        return array_values(those('chemical/type')->whose('cas_no')->is($this->cas_no)->get('id', 'name'));
     }
 }
