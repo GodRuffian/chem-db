@@ -10,6 +10,7 @@ class Product extends Object
     public $state = 'string:20';
 
     protected static $db_index = [
+        'unique:cas_no,type',
         'cas_no',
     ];
 
