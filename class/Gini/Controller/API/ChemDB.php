@@ -34,9 +34,13 @@ class ChemDB extends \Gini\Controller\API
             $where[] = $shChemical->whose('type')->is($criteria['type'])->fragment();
         }
 
+        if (count($where) > 0) {
+            $whereSQL = ' WHERE '.implode(' AND ', $where);
+        }
+
         $fromSQL = strtr('FROM :tableChemical AS :aliasChemical'
-            . ' LEFT JOIN :tableType AS :aliasType ON :aliasType."cas_no"=:aliasChemical."cas_no"'
-            . ' WHERE '.implode(' AND ', $where), [
+        . ' LEFT JOIN :tableType AS :aliasType '
+        . ' ON :aliasType."cas_no"=:aliasChemical."cas_no"'. $whereSQL, [
                 ':tableChemical' => $shChemical->table(),
                 ':aliasChemical' => $shChemical->tableAlias(),
                 ':tableType' => $shType->table(),
