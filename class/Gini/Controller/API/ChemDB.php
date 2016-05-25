@@ -31,7 +31,11 @@ class ChemDB extends \Gini\Controller\API
         
         $shType = new \Gini\Those\SQLHelper('chemical/type');
         if (isset($criteria['type'])) {
-            $where[] = $shChemical->whose('type')->is($criteria['type'])->fragment();
+            if (is_array($criteria['type'])) {
+                $where[] = $shChemical->whose('type')->isIn($criteria['type'])->fragment();
+            } else {
+                $where[] = $shChemical->whose('type')->is($criteria['type'])->fragment();
+            }
         }
 
         if (count($where) > 0) {
