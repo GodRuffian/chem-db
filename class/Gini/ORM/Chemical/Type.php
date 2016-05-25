@@ -14,4 +14,10 @@ class Type extends \Gini\ORM\Object
         'name',
     ];
 
+	public static $titles = [
+	    'drug_precursor' => '易制毒',
+	    'hazardous' => '危险品',
+	    'highly_toxic' => '剧毒品',
+	    'explosive' => '易制爆'
+	];
 }
