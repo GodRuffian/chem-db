@@ -116,10 +116,16 @@ class ChemDB extends \Gini\Controller\API
         return $this->_getData($chemical);
     }
 
+    // 'cas_no' => ['sss', 'ss', ...]
     public function actionGetChemicalTypes($cas_nos)
     {
         if (!is_array($cas_nos)) $cas_nos = [$cas_nos];
-        return those('chemical/type')->whose('cas_no')->isIn($cas_nos)->get('id', 'name');
+        $types = those('chemical/type')->whose('cas_no')->isIn($cas_nos);
+        $data = [];
+        foreach ($types as $type) {
+            $data[$type->cas_no][] = $type->name;
+        }
+        return $data;
     }
 }
 ?>
