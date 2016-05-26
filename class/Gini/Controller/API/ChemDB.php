@@ -1,15 +1,7 @@
 <?php
 
-/**
- * @brief API
- * @author Jinlin Li
- * @date 2016-1-13
- */
 namespace Gini\Controller\API;
 
-/**
- * @brief 继承自Gini\Controller\API
- */
 class ChemDB extends \Gini\Controller\API
 {
     public function actionSearchChemicals(array $criteria)
@@ -89,6 +81,7 @@ class ChemDB extends \Gini\Controller\API
             'melting_point' => $c->melting_point,
             'boiling_point' => $c->boiling_point,
             'flash_point' => $c->flash_point,
+            'msds' => !!$c->msds,
         ];
     }
 
@@ -128,5 +121,14 @@ class ChemDB extends \Gini\Controller\API
         }
         return $data;
     }
+
+    public function actionGetMSDS($cas_no)
+    {
+        if (!$cas_no) return false;
+        $msds = a('chemical/msds', ['cas_no' => $cas_no]);
+        if (!$msds->id) return false;
+        return $msds->getData()['_extra'];
+    }
+
 }
 ?>
