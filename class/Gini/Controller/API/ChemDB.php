@@ -13,20 +13,19 @@ class ChemDB extends \Gini\Controller\API
 
         if (isset($criteria['keyword'])) {
             $orWhere = [
-                $shChemical->whose('keyword')->contains($criteria['keyword'])->fragment(),
                 $shChemical->whose('cas_no')->contains($criteria['keyword'])->fragment(),
                 $shChemical->whose('name')->contains($criteria['keyword'])->fragment(),
             ];
-            
+
             $where[] = '('.implode(' OR ', $orWhere).')';
         }
-        
+
         $shType = new \Gini\Those\SQLHelper('chemical/type');
         if (isset($criteria['type'])) {
             if (is_array($criteria['type'])) {
-                $where[] = $shChemical->whose('type')->isIn($criteria['type'])->fragment();
+                $where[] = $shType->whose('name')->isIn($criteria['type'])->fragment();
             } else {
-                $where[] = $shChemical->whose('type')->is($criteria['type'])->fragment();
+                $where[] = $shType->whose('name')->is($criteria['type'])->fragment();
             }
         }
 
@@ -40,7 +39,7 @@ class ChemDB extends \Gini\Controller\API
                 ':tableChemical' => $shChemical->table(),
                 ':aliasChemical' => $shChemical->tableAlias(),
                 ':tableType' => $shType->table(),
-                ':aliasType' => $shType->tableAlias(),            
+                ':aliasType' => $shType->tableAlias(),
             ]);
 
         $countSQL = strtr('SELECT COUNT(DISTINCT :aliasChemical."id") ', [
@@ -89,7 +88,7 @@ class ChemDB extends \Gini\Controller\API
     {
         $start = intval($start);
         $per_page = min(max(intval($per_page), 0), 500);
-        
+
         $form =  $_SESSION[$token];
         $SQL = $form['SQL'].' LIMIT '.$start.','.$per_page;
         $chemicals = those('chemical')->query($SQL);
