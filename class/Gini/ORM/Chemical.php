@@ -23,6 +23,8 @@ class Chemical extends \Gini\ORM\Object
     public $boiling_point = 'double,null';
     public $flash_point = 'double,null';
 
+    public $msds = 'bool';
+
     // 以下暂时进入扩展属性
     // public $ec_hazard_codes = 'string';
     // public $ec_risk_codes = 'string';
