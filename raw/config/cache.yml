@@ -1,8 +1,8 @@
 ---
-chemical:
+chemdb:
   driver: redis
   options:
-    key_prefix: chemical-
+    key_prefix: chemdb-
     servers:
       default:
         host: 172.17.0.1

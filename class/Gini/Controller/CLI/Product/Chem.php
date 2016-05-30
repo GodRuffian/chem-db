@@ -66,7 +66,7 @@ class Chem extends \Gini\Controller\CLI
     public function actionCacheProducts()
     {
         $chemicals = those('chemical')->orderBy('cas_no', 'asc');
-        $cacher = \Gini\Cache::of('chemical');
+        $cacher = \Gini\Cache::of('chemdb');
         $timeout = 86400 * 30;
         foreach ($chemicals as $c) {
             $key = "chemical[{$c->cas_no}]";
