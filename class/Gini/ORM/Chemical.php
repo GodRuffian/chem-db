@@ -17,8 +17,8 @@ class Chemical extends \Gini\ORM\Object
     public $mol_formula = 'string';
 
     public $einecs = 'string:40';
-    public $inchi = 'string:250,null';
     public $inchi_key = 'string:30,null';
+    public $inchi = 'string:*,null';
 
     public $melting_point = 'double,null';
     public $boiling_point = 'double,null';
@@ -38,7 +38,7 @@ class Chemical extends \Gini\ORM\Object
 
     protected static $db_index = [
         'unique:cas_no',
-        'unique:inchi',
+        'unique:inchi_key',
     ];
 
     public function types() {
