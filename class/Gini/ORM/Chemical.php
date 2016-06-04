@@ -18,7 +18,8 @@ class Chemical extends \Gini\ORM\Object
 
     public $einecs = 'string:40';
     public $inchi = 'string:250,null';
-    
+    public $inchi_key = 'string:30,null';
+
     public $melting_point = 'double,null';
     public $boiling_point = 'double,null';
     public $flash_point = 'double,null';
