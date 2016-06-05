@@ -76,6 +76,8 @@ class ChemDB extends \Gini\Controller\API
             'einecs' => $c->einecs,
             'mol_formula' => $c->mol_formula,
             'mol_weight' => $c->mol_weight,
+            'inchi_key' => $c->inchi_key,
+            'smiles' => $c->smiles,
             'inchi' => $c->inchi,
             'melting_point' => $c->melting_point,
             'boiling_point' => $c->boiling_point,

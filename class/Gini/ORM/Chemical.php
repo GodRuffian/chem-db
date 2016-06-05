@@ -19,12 +19,16 @@ class Chemical extends \Gini\ORM\Object
     public $einecs = 'string:40';
     public $inchi_key = 'string:30,null';
     public $inchi = 'string:*,null';
+    public $smiles = 'string:*,null';
 
     public $melting_point = 'double,null';
     public $boiling_point = 'double,null';
     public $flash_point = 'double,null';
 
     public $msds = 'bool';
+
+    public $pubchem_cid = 'int'; //PubChem CID
+    public $chemspider_id = 'int'; //ChemSpdier ID
 
     // 以下暂时进入扩展属性
     // public $ec_hazard_codes = 'string';
@@ -37,8 +41,7 @@ class Chemical extends \Gini\ORM\Object
     // public $solubility = 'string:80';
 
     protected static $db_index = [
-        'unique:cas_no',
-        'unique:inchi_key',
+        'unique:cas_no'
     ];
 
     public function types() {
