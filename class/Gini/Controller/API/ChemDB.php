@@ -131,5 +131,9 @@ class ChemDB extends \Gini\Controller\API
         return $msds->getData()['_extra'];
     }
 
+    public function actionGetAvailableTypes()
+    {
+        return (array)\Gini\ORM\Chemical\Type::$availableTypes;
+    }
 }
 ?>

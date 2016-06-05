@@ -14,10 +14,29 @@ class Type extends \Gini\ORM\Object
         'name',
     ];
 
-	public static $titles = [
-	    'drug_precursor' => '易制毒',
-	    'hazardous' => '危险品',
-	    'highly_toxic' => '剧毒品',
-	    'explosive' => '易制爆'
-	];
+    public static $titles = [
+        'drug_precursor' => '易制毒',
+        'hazardous' => '危险品',
+        'highly_toxic' => '剧毒品',
+        'explosive' => '易制爆'
+    ];
+
+    public static $availableTypes = [
+        'drug_precursor' => [
+            'title' => '易制毒',
+            'abbr' => '毒',
+        ],
+        'hazardous' => [
+            'title' => '危险品',
+            'abbr' => '危'
+        ],
+        'highly_toxic' => [
+            'title' => '剧毒品',
+            'abbr' => '剧',
+        ],
+        'explosive' => [
+            'title' => '易制爆',
+            'abbr' => '爆',
+        ],
+    ];
 }
