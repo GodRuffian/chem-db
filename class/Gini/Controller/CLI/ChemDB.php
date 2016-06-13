@@ -29,6 +29,7 @@ class ChemDB extends \Gini\Controller\CLI
             ];
             $cacher->set($key, $data, $timeout);
         }
+        $cacher->set('chemical[allcached]', time(), $timeout);
     }
 
     public function actionMSDS($args) {
