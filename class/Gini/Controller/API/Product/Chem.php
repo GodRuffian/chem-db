@@ -39,7 +39,8 @@ class Chem extends \Gini\Controller\API
 		// 按cas号分组
         $sql = "{$sql} GROUP BY cas_no";
 
-		$products = $db->query($sql, null, $params)->rows();
+        $query = $db->query($sql, null, $params);
+		$products = $query ? $query->rows() : [];
 		$count = count($products);
 		$token = md5(J($criteria));
 		$_SESSION[$token] = [
@@ -61,7 +62,8 @@ class Chem extends \Gini\Controller\API
 		$params =  $_SESSION[$token];
 		$sql = $params['sql'].' LIMIT '.$start.','.$perpage;
 		$params = $params['params'];
-		$products = $db->query($sql, null, $params)->rows();
+        $query = $db->query($sql, null, $params);
+		$products = $query ? $query->rows() : [];
 		$data = [];
 		foreach ($products as $product) {
             $grouped = array_unique(array_values((array)those('product')->whose('cas_no')->is($product->cas_no)->get('id', 'type')));
