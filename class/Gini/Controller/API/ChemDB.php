@@ -68,7 +68,6 @@ class ChemDB extends \Gini\Controller\API
             'cas_no' => $c->cas_no,
             'name' => $c->name,
             'types' => $c->types(),
-            'titles'=> \Gini\ORM\Chemical\Type::$titles,
             'state' => $c->state,
             'en_name' => $c->en_name,
             'aliases' => $c->aliases,
