@@ -3,4 +3,7 @@ locale: zh_CN
 rurl_mod:
   js:
     query: '_v=$(VERSION)'
+session:
+  save_handler: internal/redis
+  save_path: tcp://rd.labmai.com:6379
 ...
