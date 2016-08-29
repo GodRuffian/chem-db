@@ -18,7 +18,9 @@ class Type extends \Gini\ORM\Object
         'drug_precursor' => '易制毒',
         'hazardous' => '危险品',
         'highly_toxic' => '剧毒品',
-        'explosive' => '易制爆'
+        'explosive' => '易制爆',
+        'psychotropic'=> '精神药品',
+        'narcotic'=> '麻醉药品'
     ];
 
     public static $availableTypes = [
@@ -38,5 +40,13 @@ class Type extends \Gini\ORM\Object
             'title' => '易制爆',
             'abbr' => '爆',
         ],
+        'psychotropic'=> [
+            'title'=> '精神药品',
+            'abbr'=> '精'
+        ],
+        'narcotic'=> [
+            'title'=> '麻醉药品',
+            'abbr'=> '麻'
+        ]
     ];
 }
