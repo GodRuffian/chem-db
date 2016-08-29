@@ -30,8 +30,8 @@ class Data extends \Gini\Controller\CLI
                 // create new chemical
                 $chemical->cas_no = $casNO;
                 $chemical->name = $name;
-                $chemical->aliases = $aliases;
-                $chemical->en_aliases = $enAliases;
+                if ($enAliases) $chemical->en_aliases = $enAliases;
+                if ($aliases) $chemical->aliases = $aliases;
                 if (!$chemical->save()) {
                     echo "\n{$casNO} create product failed.\n";
                     continue;
@@ -47,6 +47,7 @@ class Data extends \Gini\Controller\CLI
             if (!$ct->save()) {
                 echo "\n{$casNO} create type failed.\n";
             }
+            echo '.';
         }
         fclose($handler);
     }
