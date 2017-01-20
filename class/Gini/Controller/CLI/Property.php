@@ -12,8 +12,8 @@ class Property extends \Gini\Controller\CLI
         while ($data = $csv->read()) {
             if ($data['1']) {
                 $type = a('chemical/type');
-                $type->cas_no = $data['1'];
-                $type->name = $data['2'];
+                $type->cas_no = trim($data['1']);
+                $type->name = trim($data['2']);
 
                 if (!$type->save()) {
                     echo $line."--fail \n";
