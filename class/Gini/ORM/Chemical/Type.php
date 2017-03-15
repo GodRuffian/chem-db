@@ -20,7 +20,8 @@ class Type extends \Gini\ORM\Object
         'highly_toxic' => '剧毒品',
         'explosive' => '易制爆',
         'psychotropic'=> '精神药品',
-        'narcotic'=> '麻醉药品'
+        'narcotic'=> '麻醉药品',
+        'gas'=> '气体'
     ];
 
     public static $availableTypes = [
@@ -47,6 +48,10 @@ class Type extends \Gini\ORM\Object
         'narcotic'=> [
             'title'=> '麻醉药品',
             'abbr'=> '麻'
+        ],
+        'gas'=> [
+            'title'=> '气体',
+            'abbr'=> '气'
         ]
     ];
 }
